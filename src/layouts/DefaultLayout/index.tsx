@@ -1,13 +1,13 @@
 import { Outlet } from 'react-router-dom'
 
-// import { Header } from '../../components/Header/'
-import { LayoutContainer } from './styles'
-
 export function DefaultLayout() {
   return (
-    <LayoutContainer>
-      <h1>HEADER</h1>
+    <div>
+      <div className="flex h-28 justify-between bg-background px-40 py-8">
+        <h1>HEADER</h1>
+        <h1>HEADER</h1>
+      </div>
       <Outlet />
-    </LayoutContainer>
+    </div>
   )
 }

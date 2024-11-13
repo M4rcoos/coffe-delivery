@@ -24,6 +24,7 @@ export default [
       'simple-import-sort/imports': 'error',
       'no-unused-vars': 'warn',
       'eslint-disable-next-line': 0,
+      "useTabs": false,
       camelcase: 'off',
     },
   },
