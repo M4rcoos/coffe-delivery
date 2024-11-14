@@ -3,6 +3,9 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      backgroundImage: {
+        'intro-background': "url('/src/assets/background.svg')",
+      },
       screens: {
         sm: '600px',
         md: '768px',
@@ -24,7 +27,7 @@ export default {
         'base-button': '#E6E5E5',
         'base-input': '#EDEDED',
         'base-card': '#F3F2F2',
-        background: '#FAFAFA',
+        background: ['#FAFAFA',],
         white: '#FFFFFF',
       },
       fontFamily: {
