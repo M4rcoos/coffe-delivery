@@ -12,7 +12,7 @@ export const Intro = () => {
     return (
         <>
             <div className="relative bg-intro-background bg-cover bg-center h-[450px] xl:h-[500px] md:h-[400px] md:pt-24 w-full bg-no-repeat lg:pt-24">
-                <div className="absolute inset-0 bg-white opacity-0  "></div>
+                <div className="absolute inset-0 bg-white opacity-0 md:opacity-40 "></div>
                 <div className="relative z-10 px-3  sm:px-3  md:px-3 sm:max-w-[700px] lg:max-w-[588px] xl:max-w-[800px] lg:pl-40">
                     <h3 className="text-title-l font-baloo text-base-title md:text-title-l ">
                         Encontre o café perfeito para qualquer hora do dia
