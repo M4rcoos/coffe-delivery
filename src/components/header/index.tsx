@@ -3,7 +3,36 @@ import iconLocation from "@/assets/icon-location.svg"
 import cart from "@/assets/cart.svg"
 import { Link } from "react-router-dom"
 
+import { useEffect, useState } from "react"
+import { toast } from "react-toastify";
+
+interface Coordinates {
+    latitude: number;
+    longitude: number;
+}
+
 export const Header = () => {
+    const [coordinates, setCoordinates] = useState<Coordinates | null>(null);
+    console.log("🚀 ~ Header ~ coordinates:", coordinates)
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { latitude, longitude } = position.coords;
+                    setCoordinates({ latitude, longitude });
+                },
+                () => {
+                    setError("Permissão negada para acessar a localização.");
+                    toast.error(error)
+                }
+            );
+        } else {
+            setError("Geolocalização não é suportada pelo navegador.");
+            toast.error(error)
+        }
+    }, []);
     return (
         <header className="flex h-28 justify-between bg-background px-3 py-8 sm:px-3 sm:py-8  md:px-3 md:py-8 lg:px-40 lg:py-8 items-center">
             <img src={logo} alt='icone de um copo de cafe roxo e um texto ao lado escrito coffe delivery' />
