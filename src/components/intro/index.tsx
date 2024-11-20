@@ -18,10 +18,10 @@ export const Intro = () => {
                         Encontre o café perfeito para qualquer hora do dia
                     </h3>
                     <p className="font-roboto text-text-s md:text-text-l ">
-                        Com o Coffee Delivery você recebe seu café onde estiver, a qualquer hora
+                        Com o Coffee Delivery você recebe seu café onde estiver, <br /> a qualquer hora
                     </p>
                 </div>
-                <div className="relative max-w-72 top-16 mx-auto sm:mr-0 sm:max-w-56 md:absolute md:top-56 md:right-[20px] xl:right-[120px] xl:w-[700px] md:w-[350px] lg:w-[500px] lg:max-w-[600px] xl:max-w-[900px]  lg:top-6">
+                <div className="relative max-w-72 top-16 mx-auto sm:mr-0 sm:max-w-56 md:absolute md:top-56 md:right-[20px] xl:right-[48px] xl:w-[700px] md:w-[350px] lg:w-[500px] lg:max-w-[600px] xl:max-w-[900px]  lg:top-6">
                     <img src={cupCoffee} alt="Xícara de café" className="w-full sm:max-w-[200px] md:max-w-[300px] lg:max-w-[400px] xl:max-w-[600px]" />
                 </div>
                 {
