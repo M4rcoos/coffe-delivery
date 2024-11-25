@@ -1,8 +1,11 @@
 import { CardItem } from "@/components/card-item"
 import { Intro } from "@/components/intro"
+
 import { coffee } from "@/mocks/coffees"
 
 export const Home = () => {
+
+   
    const data = coffee
   return (
   <>

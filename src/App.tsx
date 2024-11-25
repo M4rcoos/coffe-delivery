@@ -3,12 +3,15 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { Router } from './Router'
+import { CartProvider } from './context/context-cart';
 
 export function App() {
   return (
     <BrowserRouter>
-      <Router />
-      <ToastContainer />
+      <CartProvider>
+        <Router />
+        <ToastContainer />
+      </CartProvider>
     </BrowserRouter>
   )
 }

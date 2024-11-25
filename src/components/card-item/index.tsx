@@ -1,24 +1,33 @@
-import cart from "@/assets/cart-white.svg"
+import cartSvg from "@/assets/cart-white.svg"
+import { Coffe, useCart } from "@/context/context-cart"
 import { useState } from 'react'
 
-interface Coffe {
-    id: number,
-    nome: string,
-    descricao: string,
-    image?:string
-    preco: number
-    categorias: Array<string>,
-    quantidade: number,
-}
-export const CardItem = ({nome,descricao,preco,categorias,quantidade,image}:Coffe)=>{
-    let [quantity, setQuantity] = useState <number> (quantidade)
-    
-    function sumItemToCart() {
-        setQuantity((prevQuantity) => prevQuantity + 1);
+
+export const CardItem = ({nome,descricao,preco,categorias,image, quantidade, id}:Coffe)=>{
+    const { cart, addItemToCart, removeItemFromCart } = useCart();
+
+    const item = {
+        nome,
+        descricao,
+        preco,
+        categorias,
+        image,
+        quantidade:1,
+        id,
     }
-    function subItemToCart() {
-        setQuantity((prevQuantity) => (prevQuantity > 0 ? prevQuantity - 1 : 0));
-    }
+
+    const currentItem = cart.find((cartItem) => cartItem.id === id);
+    const quantity = currentItem?.quantidade || 0;
+
+    const handleAddToCart = () => {
+        addItemToCart(item);
+    };
+
+    const handleRemoveFromCart = () => {
+        removeItemFromCart(id); // Remove do contexto
+    };
+
+  
     
     
     return (
@@ -44,12 +53,12 @@ export const CardItem = ({nome,descricao,preco,categorias,quantidade,image}:Coff
                 <p className='font-baloo text-2xl font-bold text-base-text'>{preco.toFixed(2)}</p>
                 </div>
                 <div className='ml-[23px] mr-2 bg-base-button rounded-md flex justify-around items-center gap-2 px-2 w-16'>
-                    <button className='text-purple font-roboto text-xl ' onClick={subItemToCart}>-</button>
+                    <button className='text-purple font-roboto text-xl ' onClick={handleRemoveFromCart}>-</button>
                     <span className='text-base-text'>{quantity}</span>
-                    <button className='text-purple font-roboto text-base' onClick={sumItemToCart}>+</button>
+                    <button className='text-purple font-roboto text-base' onClick={handleAddToCart}>+</button>
                 </div>
                 <button className=' rounded-md p-2 transition ease-in-out delay-150 bg-purple-dark hover:-translate-y[-20px] hover:scale-110 hover:bg-purple  duration-300'>
-                    <img src={cart}alt="" />
+                    <img src={cartSvg}alt="" />
                 </button>
             </footer>
          </div>
