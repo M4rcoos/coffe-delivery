@@ -7,8 +7,12 @@ export const checkoutSchema = z.object({
     bairro: z.string().min(1, "Bairro é obrigatório"),
     cidade: z.string().min(1, "Cidade é obrigatória"),
     complemento: z.string(),
-    estado: z.string().length(2, "Estado inválido"),
-    pagamento: z.enum(["CARTÃO_DE_CRÉDITO", "CARTÃO_DE_DÉBITO", "DINHEIRO"]),
+    estado: z.string().min(2, "Estado inválido"),
+    pagamento: z
+    .enum(["CARTÃO_DE_CRÉDITO", "CARTÃO_DE_DÉBITO", "DINHEIRO"])
+    .refine((value) => value !== undefined, {
+      message: "Selecione um método de pagamento",
+    }),
 });
 
 export type CheckoutFormData = z.infer<typeof checkoutSchema>;

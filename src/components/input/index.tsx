@@ -1,11 +1,13 @@
 import { FieldError, UseFormRegister, FieldValues, Path } from "react-hook-form";
+import { twMerge } from "tailwind-merge";
 
 interface InputProps<T extends FieldValues> {
-    register: UseFormRegister<T>; // Tipagem do register genérico
-    name: Path<T>; // Nome do campo baseado no schema
-    placeholder: string; // Placeholder para o input
-    errors?: FieldError; // Mensagem de erro opcional
-    type?: string; // Tipo de input, padrão "text"
+    register: UseFormRegister<T>;
+    name: Path<T>;
+    placeholder: string;
+    errors?: FieldError;
+    type?: string;
+    className?: string; 
 }
 
 export const InputComponent = <T extends FieldValues>({
@@ -13,20 +15,26 @@ export const InputComponent = <T extends FieldValues>({
     name,
     placeholder,
     errors,
-    type = "text", // Valor padrão para o tipo de input
+    type = "text",
+    className, 
 }: InputProps<T>) => {
     return (
-        <div>
-            <input
+        <div className="flex flex-col">
+                <input
                 type={type}
                 placeholder={placeholder}
-                {...register(name)} // Agora 'name' é do tipo 'Path<T>'
-                className={`w-full border rounded p-2 ${errors ? "border-red-500" : "border-gray-300"
-                    }`}
+                {...register(name)}
+                className={twMerge(
+                    "border rounded p-2 placeholder:text-base_label placeholder:text-text-s flex flex-col outline-none",
+                    errors && "border-red-500", 
+                    !errors && "border-gray-300", 
+                    className 
+                )}
             />
             {errors?.message && (
                 <span className="text-red-500 text-sm">{errors.message}</span>
             )}
         </div>
+    
     );
 };

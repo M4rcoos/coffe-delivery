@@ -1,10 +1,10 @@
 import cartSvg from "@/assets/cart-white.svg"
 import { Coffe, useCart } from "@/context/context-cart"
-import { useState } from 'react'
+import { Link } from "react-router-dom";
 
 
-export const CardItem = ({nome,descricao,preco,categorias,image, quantidade, id}:Coffe)=>{
-    const { cart, addItemToCart, removeItemFromCart } = useCart();
+export const CardItem = ({nome,descricao,preco,categorias,image, id}:Coffe)=>{
+    const { cart, addItemToCart, removeMinusOne } = useCart();
 
     const item = {
         nome,
@@ -24,11 +24,9 @@ export const CardItem = ({nome,descricao,preco,categorias,image, quantidade, id}
     };
 
     const handleRemoveFromCart = () => {
-        removeItemFromCart(id); // Remove do contexto
+        removeMinusOne(id);
     };
 
-  
-    
     
     return (
         <>
@@ -36,9 +34,9 @@ export const CardItem = ({nome,descricao,preco,categorias,image, quantidade, id}
          <img src={image} className='relative top-[-20px] ' width={120} height={120}/>
            <div className='flex gap-2 w-full items-center justify-center'>
             {
-              categorias.map((categoria, index)=>(
+              categorias.map((categoria)=>(
                <div>
-                 <div className='bg-yellow-light max-w-min rounded-full ' key={index}><p className='text-yellow-dark text-tag font-roboto px-2 py-1 whitespace-nowrap'> {categoria}</p></div>
+                 <div className='bg-yellow-light max-w-min rounded-full '  key={`${categoria}-${id}`}><p className='text-yellow-dark text-tag font-roboto px-2 py-1 whitespace-nowrap'> {categoria}</p></div>
                     </div>
                ))
               }
@@ -57,9 +55,9 @@ export const CardItem = ({nome,descricao,preco,categorias,image, quantidade, id}
                     <span className='text-base-text'>{quantity}</span>
                     <button className='text-purple font-roboto text-base' onClick={handleAddToCart}>+</button>
                 </div>
-                <button className=' rounded-md p-2 transition ease-in-out delay-150 bg-purple-dark hover:-translate-y[-20px] hover:scale-110 hover:bg-purple  duration-300'>
+                <Link to={cart.length > 0 ? '/checkout' : '/'}className=' rounded-md p-2 transition ease-in-out delay-150 bg-purple-dark hover:-translate-y[-20px] hover:scale-110 hover:bg-purple  duration-300'>
                     <img src={cartSvg}alt="" />
-                </button>
+                </Link>
             </footer>
          </div>
         </>

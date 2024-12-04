@@ -15,7 +15,7 @@ export const Home = () => {
   {
     data.map((item) => {
       return(
-        <CardItem  {...item}/>
+        <CardItem key={item.id} {...item}/>
       )
     })
   }
