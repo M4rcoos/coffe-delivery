@@ -10,8 +10,8 @@ export const Home = () => {
   return (
   <>
   <Intro />
-  <h3 className=" font-baloo text-title-l text-base-title lg:ml-40 p-3 mt-8">Nossos cafés</h3>
-  <section className="lg:ml-40 p-3 flex flex-wrap  gap-8">
+  <h3 className=" font-baloo text-title-l text-base-title text-center p-3 mt-8">Nossos cafés</h3>
+  <section className="flex flex-wrap gap-8 justify-center mb-12">
   {
     data.map((item) => {
       return(

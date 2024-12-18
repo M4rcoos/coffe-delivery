@@ -89,16 +89,16 @@ export const Checkout = () => {
   > = ["CARTÃO_DE_CRÉDITO", "CARTÃO_DE_DÉBITO", "DINHEIRO"];
 
   return (
-    <div className="mt-8 flex flex-col gap-10 px-4 lg:flex-row lg:px-40">
+    <div className="mt-8 flex flex-col gap-10 px-4 lg:flex-row lg:px-40 ">
       <form
         onSubmit={handleSubmit(onSubmit, (errors) => {
           console.error("Erros de validação:", errors);
         })}
-        className="flex flex-wrap gap-2"
+        className="flex flex-wrap gap-2 w-full"
       >
-        <div className="flex max-w-[640px] flex-1 flex-col gap-3">
+        <div className="flex  w-[350px]sm:w-full flex-1 flex-col gap-3">
           {/* Endereço */}
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full">
             <h3 className="mb-4 font-baloo text-title-l text-base-title">
               Complete seu pedido
             </h3>
@@ -113,7 +113,7 @@ export const Checkout = () => {
                   </p>
                 </div>
               </div>
-              <div className="max-w-52">
+              <div className="sm:max-w-52">
                 <InputComponent<CheckoutFormData>
                   name="cep"
                   placeholder="CEP"
@@ -174,7 +174,7 @@ export const Checkout = () => {
           </div>
 
           {/* Pagamento */}
-          <div className="flex flex-1 gap-3 rounded-md bg-gray-100 p-6">
+          <div className="flex flex-1 gap-3 rounded-md bg-gray-100 p-6 flex-col sm:flex-row items-center justify-center">
             {paymentMethods.map((method) => (
               <div
                 key={method}
@@ -214,16 +214,16 @@ export const Checkout = () => {
             Cafés selecionados
           </h3>
           <div className="w-full rounded-md bg-gray-100 p-6 lg:w-96">
-            <div className="space-y-4">
+            <div>
               {coffesInCart.map((item) => (
                 <div
                   key={item.id}
-                  className="flex items-center justify-between"
+                  className="flex gap-5"
                 >
                   <img src={item.image} width={64} height={64} />
                   <span>
                     {item.nome} (x{item.quantidade})
-                    <div className="flex gap-2 rounded-md">
+                    <div className="flex gap-2 rounded-md flex-col">
                       <div className="flex w-16 items-center justify-around gap-2 rounded-md bg-base-button px-2">
                         <button
                           className="font-roboto text-xl text-purple"
@@ -241,7 +241,7 @@ export const Checkout = () => {
                           +
                         </button>
                       </div>
-                      <div className="flex items-center gap-1 rounded-md bg-base-button px-1">
+                      <div className="flex items-center gap-1 rounded-md bg-base-button p-2 min-w-min w-28">
                         <img src={iconLixo} />
                         <button
                           onClick={() => handleRemoveFromCart(item)}
@@ -252,10 +252,10 @@ export const Checkout = () => {
                       </div>
                     </div>
                   </span>
-                  <span>R$ {item.preco.toFixed(2)}</span>
+                  <span className="font-bold">R$ {item.preco.toFixed(2)}</span>
                 </div>
               ))}
-              <div className="mt-4 border-t border-gray-300 pt-4">
+              <div className="mt-4 border-t border-gray-300 pt-4 space-y-3">
                 <div className="flex justify-between">
                   <span>Total de itens</span>
                   <span>

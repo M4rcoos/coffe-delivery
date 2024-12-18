@@ -19,13 +19,13 @@ export const InputComponent = <T extends FieldValues>({
     className, 
 }: InputProps<T>) => {
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full">
                 <input
                 type={type}
                 placeholder={placeholder}
                 {...register(name)}
                 className={twMerge(
-                    "border rounded p-2 placeholder:text-base_label placeholder:text-text-s flex flex-col outline-none",
+                    "border rounded p-2 placeholder:text-base_label placeholder:text-text-s flex flex-col outline-none w-full",
                     errors && "border-red-500", 
                     !errors && "border-gray-300", 
                     className 
